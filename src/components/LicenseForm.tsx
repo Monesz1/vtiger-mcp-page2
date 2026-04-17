@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Key, CheckCircle, X, Loader2 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function LicenseForm() {
   const [formData, setFormData] = useState({
@@ -194,12 +195,12 @@ export default function LicenseForm() {
                 </span>
               </div>
               
-              <button
-                onClick={() => setShowModal(false)}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition-colors"
+              <Link
+                to="/setup"
+                className="w-full inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition-colors"
               >
                 Tovább a beállításhoz
-              </button>
+              </Link>
             </motion.div>
           </div>
         )}
