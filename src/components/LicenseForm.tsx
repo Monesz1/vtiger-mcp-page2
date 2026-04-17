@@ -25,23 +25,17 @@ export default function LicenseForm() {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch("/api/generate-license", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
-      });
+      // Szimuláljuk a hálózati késleltetést (mivel a GitHub Pages statikus és nem futtat backendet)
+      await new Promise(resolve => setTimeout(resolve, 800));
       
-      const data = await response.json();
+      // Kliens oldali licenckulcs generálás
+      const randomBlock = () => Math.random().toString(36).substring(2, 6).toUpperCase();
+      const generatedKey = `VT-MCP-${randomBlock()}-${randomBlock()}-${randomBlock()}`;
       
-      if (data.success) {
-        setLicenseKey(data.licenseKey);
-        setShowModal(true);
-        // Reset form optionally, or keep it filled
-      }
+      setLicenseKey(generatedKey);
+      setShowModal(true);
     } catch (error) {
-      console.error("Failed to generate license", error);
+      console.error("Hiba történt a generálás során", error);
     } finally {
       setIsSubmitting(false);
     }
